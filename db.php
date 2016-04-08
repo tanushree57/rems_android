@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 $conn=mysqli_connect("localhost", "root", "","rems_db");
 if (mysqli_connect_errno())
 {
