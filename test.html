@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function trial() {
+            window.location="http://117.207.213.43:8080/rems/androids/user_login_process/john/john/employee"
+        }
+
+        function post() {
+            var method =  "post"; // Set method to post by default if not specified.
+            var path = "http://117.207.213.43:8080/rems/androids/user_login_process";
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            var params = {username:"jane", password:"jane", redirect:"androids"};
+
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                    var hiddenField = document.createElement("input");
+                    hiddenField.setAttribute("type", "hidden");
+                    hiddenField.setAttribute("name", key);
+                    hiddenField.setAttribute("value", params[key]);
+
+                    form.appendChild(hiddenField);
+                }
+            }
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+    </script>
+
+    <script src="jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#login").click(function(){
+                username=$("#name").val();
+                password=$("#pass").val();
+                $.ajax({
+                    type: "POST",
+                    url: "http://117.217.70.52:8080/rems/androids/user_login_process",
+                    data: "username="+username+"&password="+password,
+                    success: function(html){
+                        if(html=='true')    {
+                            //$("#add_err").html("right username or password");
+                            // window.location="dashboard.php";
+                            alert("logged in")
+                        }
+                        else    {
+                            alert(html);
+                        }
+                    },
+
+                });
+                return false;
+            });
+        });
+
+        //window.location="http://117.207.213.43:8080/rems/androids/user_login_process/john/john/androids"
+
+    </script>
+</head>
+<body>
+<button onclick="post()">click</button>
+
+<br>
+<br>
+<input type="text" value="john" id="name">
+<input type="text" value="john" id="pass">
+<button id="login">click</button>
+</body>
+</html>

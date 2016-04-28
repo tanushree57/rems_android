@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src='//static.opentok.com/v2/js/opentok.min.js'></script>
+    <script>
+        var apiKey = 45575582;
+        var sessionId = '1_MX40NTU3NTU4Mn5-MTQ2MTc4NjUzNDk3MH5xQ0dnMjR4azZrSFBZVnhrM1hvbExqOHJ-UH4';
+        var session = OT.initSession(apiKey, sessionId);
+        var token = 'T1==cGFydG5lcl9pZD00NTU3NTU4MiZzaWc9MDNjOTE3MTM5OGI1MWUyOTVkOTExZjZlYmI4NmI5NzIxZWUyNGE0NDpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTFfTVg0ME5UVTNOVFU0TW41LU1UUTJNVGM0TmpVek5EazNNSDV4UTBkbk1qUjRhelpyU0ZCWlZuaHJNMWh2YkV4cU9ISi1VSDQmY3JlYXRlX3RpbWU9MTQ2MTc4NzIyMCZub25jZT0wLjUzMTg2NDY1OTk3MDQ2NjMmZXhwaXJlX3RpbWU9MTQ2MTg3MzYyMA==';
+        session.on({
+            streamCreated: function(event) {
+                session.subscribe(event.stream, 'subscribersDiv', {insertMode: 'append'});
+            }
+        });
+
+        session.connect(token, function(error) {
+            if (error) {
+                console.log(error.message);
+            } else {
+                console.log('connected to session');
+                session.publish('myPublisherDiv', {width: 320, height: 240});
+            }
+        });
+    </script>
+</head>
+<body>
+<div id='myPublisherDiv'></div>
+<div id='subscribersDiv'></div>
+</body>
+</html>
